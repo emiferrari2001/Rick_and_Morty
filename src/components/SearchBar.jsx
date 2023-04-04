@@ -10,6 +10,8 @@ export default function SearchBar(props) {
    return (
       <div>
          <input type='search' onChange={handleChange} />
+         {/* le paso primero el seach con un callback para que se ejecute solamente cuando hago click
+         y no automaticamente. Despues, al input, le borro el valor para que pueda escribir otro */}
          <button onClick={() => onSearch(id)}>Agregar</button>
       </div>
    );

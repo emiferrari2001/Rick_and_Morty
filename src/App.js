@@ -29,11 +29,20 @@ function App() {
       }
    });
    }
+   const onClose = (id) => {
+      //filter devuelve un string por lo que debo convertir a numero
+      const charactersFiltered = characters.filter((character) =>
+         // el id actual es distinto al que me pasaron por parametro?
+         // si es distinto no hace nada
+         // si es igual elimina del array set characters si es igual
+         character.id !== Number(id));
+         setCharacters(charactersFiltered);
+   }
 
    return (
       <div className='App'>
          <Nav onSearch={onSearch}/>
-         <Cards characters={characters} />
+         <Cards characters={characters} onClose={onClose} />
       </div>
    );
 }

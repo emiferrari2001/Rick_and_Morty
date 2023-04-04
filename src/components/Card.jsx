@@ -1,7 +1,11 @@
 export default function Card(props) {
+   const handleClick = () => {
+      console.log("Close button clicked with id", props.id);
+      props.onClose(props.id);
+    };
    return (
       <div className="cardPersonaje">
-         <button onClick={props.onClose}>X</button>
+         <button onClick={() => props.onClose(props.id)}>X</button>
          <h2>{props.name}</h2>
          <p>{props.status}</p>
          <p>{props.species}</p>
