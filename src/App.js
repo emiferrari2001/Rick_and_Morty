@@ -2,12 +2,13 @@ import './App.css';
 // import Card from './components/Card.jsx';
 import Cards from './components/Cards.jsx';
 import Nav from './components/Nav';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route , useLocation, useNavigate} from 'react-router-dom';
 import About from './components/About';
 import Detail from './components/Detail';
 import Error from './components/Error';
+import Form from './components/Form/Form';
  
 function App() { 
    // un estado para trackear los personajes que voy mostrando
@@ -48,13 +49,33 @@ function App() {
          setCharacters(charactersFiltered);
       }
    }
+   let [access, setAccess] = useState(false);
+   const email = 'emiferrari2001@gmail.com'
+   const password = 'Password';
+   const navigate = useNavigate();
 
+   let login = (userData) => {
+      if (userData.email === email && userData.password === password){
+         setAccess(true);
+         navigate('/home');
+      } else {
+         alert('Las credenciales proporcionadas no existen');
+         
+      }
+   }
+   useEffect(() => {
+      !access && navigate('/');
+   }, [access]);
+   
+   const location = useLocation();
    return (
       
       <div className='App'>
-         <Nav onSearch={onSearch}/>
+         {/* si estoy en la pagina inicial, no se muestra el nav */}
+         {location.pathname !== '/' && <Nav onSearch={onSearch}/>}         
          <Routes>
-            <Route path='/' element={<Cards characters={characters} onClose={onClose} />}/>
+            <Route path='/' element={<Form login={login}/>}/>
+            <Route path='/home' element={<Cards characters={characters} onClose={onClose} />}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/detail/:id' element={<Detail/>}/>
             {/* Aca al usar el :str representa cualquier palabra que se le pueda poner a la ruta

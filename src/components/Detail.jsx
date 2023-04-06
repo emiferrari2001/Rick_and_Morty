@@ -4,6 +4,7 @@ import { useState, useEffect} from "react";
 export default function Detail (){
     let[character, setCharacter] = useState([]);
     const {id} = useParams();
+    // cada vez que se modifica el id se ejecuta el use effect y actualiza componente
     useEffect(() => {
         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
            if (data.name) {
