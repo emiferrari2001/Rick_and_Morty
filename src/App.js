@@ -9,13 +9,17 @@ import About from './components/About';
 import Detail from './components/Detail';
 import Error from './components/Error';
 import Form from './components/Form/Form';
- 
+
+
+const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
+const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
+
 function App() { 
    // un estado para trackear los personajes que voy mostrando
    let [characters, setCharacters] = useState([]);
    //hago otro estado para guardar los ids de los personajes
    const [characterIds, setCharacterIds] = useState([]);
-   
+
    let onSearch = (id) =>{
       let casillaInput = document.querySelector('input');
       console.log(casillaInput.value);
@@ -26,7 +30,7 @@ function App() {
         return;
       }
       //va a agregar un nuevo personaje a 'characters'
-      axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+      axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
       if (data.name) {
          // en la funcion del estado guarda un array llamando cada vez a la instancia anterior, hace una copia, y agrega el ultimo valor.
          setCharacters((oldChars) => [...oldChars, data]);
@@ -45,7 +49,7 @@ function App() {
          // el id actual es distinto al que me pasaron por parametro?
          // si es distinto no hace nada
          // si es igual elimina del array set characters si es igual
-         character.id !== Number(id));
+         character.id !== id);
          setCharacters(charactersFiltered);
       }
    }

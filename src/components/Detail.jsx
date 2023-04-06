@@ -4,9 +4,11 @@ import { useState, useEffect} from "react";
 export default function Detail (){
     let[character, setCharacter] = useState([]);
     const {id} = useParams();
+    const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
+   const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
     // cada vez que se modifica el id se ejecuta el use effect y actualiza componente
     useEffect(() => {
-        axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+        axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
            if (data.name) {
               setCharacter(data);
            } else {

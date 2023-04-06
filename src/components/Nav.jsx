@@ -4,7 +4,7 @@ export default function Nav (props) {
     let {onSearch} = props;
 return (
     <div>
-    <button><NavLink to='/'>Home</NavLink></button>
+    <button><NavLink to='/home'>Home</NavLink></button>
     <button><NavLink to='/About'>About</NavLink></button>
     {/* <SearchBar onSearch={(characterID) => window.alert(characterID)} /> */}
     <SearchBar onSearch={onSearch}/>
