@@ -1,0 +1,33 @@
+.contenedorAbout{
+    background: rgb(37,35,92);
+    background: linear-gradient(180deg, rgba(37,35,92,1) 0%, rgba(28,27,69,1) 100%); 
+    width: 30%;
+    margin: 0 auto;
+    padding: 5%;
+    box-shadow: #0c0b29 0px 1px 9px;
+    border-radius: 40px;
+    color: whitesmoke;
+}
+.fotoAbout{
+    width: 50%;
+    border-radius: 50%;
+    border: whitesmoke 3px solid ;
+}
+.botonAbout{
+    background-color: #6b62b9;
+    border-style: none;
+    color: whitesmoke;
+    display: block;
+    margin: 2% auto;
+    border-radius: 10px;
+    padding: 3%;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+.botonAbout a {
+    text-decoration: none;
+}
+.botonAbout:hover {
+    background-color: #4f4985;
+    text-decoration: none;
+}

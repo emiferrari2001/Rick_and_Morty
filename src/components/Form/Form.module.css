@@ -1,0 +1,31 @@
+.form {
+    display: inline-grid;
+    width: 20%;
+    margin: 5%;
+    padding: 5%;
+    border-radius: 30px;
+    color: antiquewhite;
+}
+.formImage {
+    background-image: url('../../../img/fu_rick.png');
+    width: 200px;
+    height: 200px;
+    background-size: 90%;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -10% 0;    
+  }
+  .button {
+    border-radius: 20px;
+    padding: 4%;
+    margin: 0 20%;
+    border: none;
+    background: linear-gradient(90deg, rgba(50,208,0,1) 0%, rgba(29,158,0,1) 100%);
+    font-weight: 600;
+}
+.label {
+    text-align: initial;
+    font-size: 14px;
+    margin-bottom: 2%;
+}

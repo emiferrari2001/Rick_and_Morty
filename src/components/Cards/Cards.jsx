@@ -1,7 +1,8 @@
-import Card from './Card';
+import Card from '../Card/Card';
+import styles from './Cards.module.css'
 export default function Cards(props) {
    let {characters} = props;
-   return (<div className='contenedorCartas' style={{display:'flex' , flexFlow: 'wrap'}}>
+   return (<div className={styles.contenedorCartas}>
       {
          
          characters.map((personaje) => { // se usa el metodo map para recorrer en react

@@ -1,0 +1,48 @@
+.cardPersonaje{
+    padding: 5%;
+    background: rgb(37,35,92);
+    background: linear-gradient(180deg, rgba(37,35,92,1) 0%, rgba(28,27,69,1) 100%); 
+    border-radius: 40px;
+    color: whitesmoke;
+    width: 20%;
+    box-shadow: #0c0b29 0px 1px 9px;
+}
+.cardPersonaje img{
+    border-radius: 50%;
+    width: 70%;
+    border: 3px solid whitesmoke;
+}
+.cardPersonaje p {
+    opacity: 60%;
+    font-size: 0.8rem;
+}
+.botonCard{
+    display: flex;
+    margin-left: auto;
+    background: #d6c248;
+    color: #25235c;
+    border-radius: 50%;
+    font-weight: 900;
+    border-style: none;
+    margin-top: -10%;
+    cursor: pointer;
+
+}
+.linkNombre a{
+    text-decoration: none;
+    font-weight: 500;
+}
+.linkNombre span{
+    font-weight: 500;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+@media (max-width: 796px) {
+    .cardPersonaje{
+        width: 50%;
+    }
+  }

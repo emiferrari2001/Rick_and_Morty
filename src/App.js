@@ -1,12 +1,12 @@
 import './App.css';
 // import Card from './components/Card.jsx';
-import Cards from './components/Cards.jsx';
-import Nav from './components/Nav';
+import Cards from './components/Cards/Cards.jsx';
+import Nav from './components/Nav/Nav';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Routes, Route , useLocation, useNavigate} from 'react-router-dom';
-import About from './components/About';
-import Detail from './components/Detail';
+import About from './components/About/About';
+import Detail from './components/Detail/Detail';
 import Error from './components/Error';
 import Form from './components/Form/Form';
 
@@ -67,6 +67,14 @@ function App() {
          
       }
    }
+   let logout = () => {  
+      let confirmacion = window.confirm('¿Seguro deseas cerrar sesión?')
+      if (confirmacion) {
+         setAccess(false);
+         navigate('/');   
+      }   
+         
+   }
    useEffect(() => {
       !access && navigate('/');
    }, [access]);
@@ -76,7 +84,7 @@ function App() {
       
       <div className='App'>
          {/* si estoy en la pagina inicial, no se muestra el nav */}
-         {location.pathname !== '/' && <Nav onSearch={onSearch}/>}         
+         {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout}/>}         
          <Routes>
             <Route path='/' element={<Form login={login}/>}/>
             <Route path='/home' element={<Cards characters={characters} onClose={onClose} />}/>

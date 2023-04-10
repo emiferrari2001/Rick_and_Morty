@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect} from "react";
+import styles from './Detail.module.css';
+
 export default function Detail (){
     let[character, setCharacter] = useState([]);
     const {id} = useParams();
@@ -25,16 +27,23 @@ export default function Detail (){
         return null;
       }
     return (
-        <div>
-            <h1>{character.name}</h1>
-            <h3>Status: {character.status}</h3>
-            <h3>Gender: {character.gender}</h3>
-            <h3>Species: {character.species}</h3>
-            <h3>Origin: {renderOrigin(character.origin)}</h3>
+        <div className={styles.contenedorDetalle}>
+            <div className={styles.contenedorInfo}>
+            <h2>{character.name}</h2>
+
+            <p>Status: {character.status}</p>
+            <p>Gender: {character.gender}</p>
+            <p>Species: {character.species}</p>
+            <p>Origin: {renderOrigin(character.origin)}</p>
             {/* tambien se puede renderear el origin con un condicional de una linea:
             {character.origin ? `${character.origin.name}` : ''} 
-            eso iria despues de "Origin: "*/}
+         eso iria despues de "Origin: "*/}
+            </div>
+
+            <div className={styles.contenedorFoto}>
             <img src={character.image} alt="" />
+            </div>
+
             
         </div>
     )

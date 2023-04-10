@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import styles from './SearchBar.module.css';
+
 export default function SearchBar(props) {
    let {onSearch} = props;
    //console.log(onSearch);
@@ -8,7 +10,7 @@ export default function SearchBar(props) {
       setId(event.target.value)
    }
    return (
-      <div>
+      <div className={styles.barra}>
          <input type='search' onChange={handleChange} />
          {/* le paso primero el seach con un callback para que se ejecute solamente cuando hago click
          y no automaticamente. Despues, al input, le borro el valor para que pueda escribir otro */}

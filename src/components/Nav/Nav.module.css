@@ -1,0 +1,28 @@
+.navContainer{
+    display: inline-flex;
+    margin: 2% 0;
+    margin-top: 3%;
+    width: 100%;
+}
+.contenedorBotones {
+    margin-left: 5%;
+}
+.botonesNav{
+    margin: 0 20px;
+    background: none;
+    text-decoration: none;
+    border-style: none;
+    font-size: 1rem;
+    color: whitesmoke;
+    text-transform: uppercase;
+}
+.botonesNav a{
+    text-decoration: none;
+    transition: 0.5s
+}
+.botonesNav a:hover{
+    text-decoration: underline;
+}
+a:-webkit-any-link {
+    color: whitesmoke;
+}
