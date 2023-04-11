@@ -1,5 +1,5 @@
 import { useState } from "react";
-import validate from "./validation";
+import validate from "../Validation/validation";
 import styles from "./Form.module.css"
 const Form = ({login}) => {
     const[userData, setUserData] = useState({
