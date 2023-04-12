@@ -1,0 +1,7 @@
+.contenedorFavorites {
+    display: flex;
+    padding: 0 5%;
+    flex-flow: wrap;
+    gap: 1rem;
+    justify-content: center;
+}

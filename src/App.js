@@ -9,7 +9,7 @@ import About from './components/About/About';
 import Detail from './components/Detail/Detail';
 import Error from './components/Error';
 import Form from './components/Form/Form';
-
+import Favorites from './components/Favorites/Favorites';
 
 const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
 const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
@@ -89,6 +89,7 @@ function App() {
             <Route path='/' element={<Form login={login}/>}/>
             <Route path='/home' element={<Cards characters={characters} onClose={onClose} />}/>
             <Route path='/about' element={<About/>}/>
+            <Route path= '/favorites' element={<Favorites/>}/>
             <Route path='/detail/:id' element={<Detail/>}/>
             {/* Aca al usar el :str representa cualquier palabra que se le pueda poner a la ruta
             los ":" lo convierten en variable */}
