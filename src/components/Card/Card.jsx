@@ -1,7 +1,7 @@
 import styles from './Card.module.css';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { addFav, removeFav } from '../../redux/actions';
 
 const Card = (props) => {
@@ -41,6 +41,7 @@ const Card = (props) => {
           <button onClick={handleFavorite}>🤍</button>
         )}
       </div>
+      {/* habria que hacer renderizado condicional si hay onclose para favorites */}
       <button onClick={() => props.onClose(props.id)} className={styles.botonCard}>
         x
       </button>
