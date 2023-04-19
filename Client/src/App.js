@@ -30,7 +30,10 @@ function App() {
         return;
       }
       //va a agregar un nuevo personaje a 'characters'
-      axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
+      // viejo:
+      // axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
+      
+      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
       if (data.name) {
          // en la funcion del estado guarda un array llamando cada vez a la instancia anterior, hace una copia, y agrega el ultimo valor.
          setCharacters((oldChars) => [...oldChars, data]);

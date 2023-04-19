@@ -15,7 +15,7 @@ const Favorites = (props)=>{
     const handleOrder = (event) => {
         console.log(event.target.value)
         dispatch(orderCards(event.target.value))
-        setAux(!aux);
+        setAux(true);
     }
     const handleFilter = (event) => {
         dispatch(filterCards(event.target.value))

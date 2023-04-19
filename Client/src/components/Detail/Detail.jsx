@@ -10,7 +10,11 @@ export default function Detail (){
    const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
     // cada vez que se modifica el id se ejecuta el use effect y actualiza componente
     useEffect(() => {
-        axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
+      
+      // viejo:
+      //axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
+        
+      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
            if (data.name) {
               setCharacter(data);
            } else {

@@ -51,6 +51,7 @@ switch(action.type){
     case ORDER:
         console.log('filtro orden');
         const todosLosPjs = state.allCharacters;
+        // guardo copia para hacer sort
         console.log(todosLosPjs);
         console.log(action.payload);
         if (action.payload === "A") {
@@ -63,7 +64,15 @@ switch(action.type){
                 ...state,
                 myFavorites: todosLosPjs.sort((a, b) => b.id - a.id)
             }
-          }
+            // tambien se puede hacer ternario
+            // return{
+            //     ...state,
+            //     myFavorites: 
+            //     action.payload=== 'A'
+            //     ? todosLosPjs.sort((a,b) => a.id-b.id)
+            //     : todosLosPjs.sort((a,b) => b.id - a.id)
+            // }
+        }
     case RESET:
         return {
             ...state,
