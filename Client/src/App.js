@@ -11,8 +11,8 @@ import Error from './components/Error';
 import Form from './components/Form/Form';
 import Favorites from './components/Favorites/Favorites';
 
-const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
-const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
+//const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
+//const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
 
 function App() { 
    // un estado para trackear los personajes que voy mostrando

@@ -6,8 +6,8 @@ import styles from './Detail.module.css';
 export default function Detail (){
     let[character, setCharacter] = useState([]);
     const {id} = useParams();
-    const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
-   const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
+   //const URL_BASE = 'https://be-a-rym.up.railway.app/api/character';
+   //const API_KEY = 'abe77a646af1.79bd8305f7239c2e37af'
     // cada vez que se modifica el id se ejecuta el use effect y actualiza componente
     useEffect(() => {
       
@@ -26,7 +26,7 @@ export default function Detail (){
      //console.log(character);
      function renderOrigin(origin) {
         if (origin) {
-          return origin.name;
+          return origin;
         }
         return null;
       }
@@ -39,7 +39,7 @@ export default function Detail (){
             <p>Gender: {character.gender}</p>
             <p>Species: {character.species}</p>
             <p>Origin: {renderOrigin(character.origin)}</p>
-            {/* tambien se puede renderear el origin con un condicional de una linea:
+            {/* tambien se puede renderear el origin con un condicional de una linea/ternario:
             {character.origin ? `${character.origin.name}` : ''} 
          eso iria despues de "Origin: "*/}
             </div>

@@ -48,31 +48,19 @@ switch(action.type){
             // sin embargo, mantengo una copia de todos los personajes por si quiero filtrar de nuevo
             allCharacters: allCharacters
         }
-    case ORDER:
-        console.log('filtro orden');
-        const todosLosPjs = state.allCharacters;
-        // guardo copia para hacer sort
-        console.log(todosLosPjs);
-        console.log(action.payload);
-        if (action.payload === "A") {
-            return{
-                ...state,
-                myFavorites: todosLosPjs.sort((a, b) => a.id - b.id)
+        case ORDER:
+            console.log('filtro orden');
+            const todosLosPjs = state.allCharacters.slice(); // crear una copia del array
+            if (action.payload === "A") {
+                todosLosPjs.sort((a, b) => a.id - b.id); // ordenar el array
+            } else if (action.payload === "D") {
+                todosLosPjs.sort((a, b) => b.id - a.id); // ordenar el array
             }
-          } else if (action.payload === "D") {
-            return{
+            return {
                 ...state,
-                myFavorites: todosLosPjs.sort((a, b) => b.id - a.id)
+                myFavorites: todosLosPjs.slice(), // crear una nueva instancia del array ordenado
+                allCharacters: todosLosPjs.slice() // actualizar también allCharacters
             }
-            // tambien se puede hacer ternario
-            // return{
-            //     ...state,
-            //     myFavorites: 
-            //     action.payload=== 'A'
-            //     ? todosLosPjs.sort((a,b) => a.id-b.id)
-            //     : todosLosPjs.sort((a,b) => b.id - a.id)
-            // }
-        }
     case RESET:
         return {
             ...state,
