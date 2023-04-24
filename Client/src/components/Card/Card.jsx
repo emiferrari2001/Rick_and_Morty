@@ -33,7 +33,7 @@ const Card = (props) => {
 }, [myFavorites]);
 
   return (
-    <div className={styles.cardPersonaje}>
+    <div className= {styles.cardPersonaje}>
       <div>
         {isFav ? (
           <button onClick={handleFavorite}>❤️</button>
@@ -42,7 +42,7 @@ const Card = (props) => {
         )}
       </div>
       {/* habria que hacer renderizado condicional si hay onclose para favorites */}
-      <button onClick={() => props.onClose(props.id)} className={styles.botonCard}>
+      <button onClick={() => props.onClose(props.id)} className={`${styles.botonCard} otroClassName`}>
         x
       </button>
       <img src={props.image} alt={props.name} />

@@ -1,22 +1,17 @@
-const http = require('http');
-//const data = require('./utils/data.js');
+const express = require('express');
+const server = express();
+const PORT = 3001;
 const getCharById = require('./controllers/getCharById');
+const login = require('./controllers/login');
+const router = require('./routes/index');
 
-const servidor = http
-.createServer((request, response) =>{
-    response.setHeader('Access-Control-Allow-Origin', '*');
-    if(request.url.includes('/rickandmorty/character')){
-        let urlCortada = request.url.split('/character/')[1];
-        let id = Number(urlCortada);
-        console.log('pido personaje');
-        getCharById(response, id)
-    } else {
-        response.writeHead(404, {
-            "Content-type":"text/plain"
-        })
-        return response.end('El personaje no existe');
-    }
-})
-servidor.listen(3001, 'localhost', ()=>{
-    console.log('hola')
-})
+server.use(express.json())
+server.use('/rickandmorty', router);
+
+server.use((req, res) => {
+    res.status(404).send('El personaje no existe');
+});
+
+server.listen(PORT, () => {
+    console.log(`Server raised in port: ${PORT}`);
+});

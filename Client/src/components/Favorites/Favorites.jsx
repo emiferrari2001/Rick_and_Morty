@@ -42,7 +42,7 @@ const Favorites = (props)=>{
                     <option value="unknown">Unknown</option>
                 </select>
             </div>
-            <div className={styles.contenedorFavorites}>
+            <div className={`${styles.contenedorFavorites} contenedorFavs`}>
             {
                 //si hay algo en myfavorites mapeo si no no
                 myFavorites?.map((character) => {

@@ -11,3 +11,6 @@
 .contenedorFiltro {
     margin: 2% auto;
 }
+.contenedorFavs .otroClassName{
+    display: none;
+}

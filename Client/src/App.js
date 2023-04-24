@@ -32,7 +32,8 @@ function App() {
       //va a agregar un nuevo personaje a 'characters'
       // viejo:
       // axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
-      
+      // const urlPeticion= `http://localhost:3001/rickandmorty/character/${id}`;
+      // console.log('urlPeticion:' + urlPeticion);
       axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
       if (data.name) {
          // en la funcion del estado guarda un array llamando cada vez a la instancia anterior, hace una copia, y agrega el ultimo valor.
@@ -57,19 +58,31 @@ function App() {
       }
    }
    let [access, setAccess] = useState(false);
-   const email = 'emiferrari2001@gmail.com'
-   const password = 'Password';
+   // const email = 'emiferrari2001@gmail.com'
+   // const password = 'Password';
    const navigate = useNavigate();
 
-   let login = (userData) => {
-      if (userData.email === email && userData.password === password){
-         setAccess(true);
-         navigate('/home');
-      } else {
-         alert('Las credenciales proporcionadas no existen');
+   // let login = (userData) => {
+   //    if (userData.email === email && userData.password === password){
+   //       setAccess(true);
+   //       navigate('/home');
+   //    } else {
+   //       alert('Las credenciales proporcionadas no existen');
          
-      }
+   //    }
+   // }
+
+   function login(userData) {
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login';
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         if(access=== false)alert('Las credenciales proporcionadas no existen');
+         access && navigate('/home');
+      });
    }
+
    let logout = () => {  
       let confirmacion = window.confirm('¿Seguro deseas cerrar sesión?')
       if (confirmacion) {

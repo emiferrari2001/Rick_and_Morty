@@ -14,20 +14,23 @@ switch(action.type){
         //console.log(state.myFavorites)
         return {
             ...state,
-            //al estado actual de all characters le estoy agregando el valor actual
-            myFavorites: [...state.allCharacters, action.payload],
-            // guardo un estado con la misma informacion para realizar el filtrado en otros casos
-            // para no estar pisando el valor y tener una copia
-            allCharacters: [...state.allCharacters, action.payload]
-        }
+            myFavorites: action.payload,
+            allCharacters: action.payload 
+        };
+        
 
     case REMOVE_FAV:
         console.log('saco fav');
-        return {
-            ...state,
-            myFavorites: state.myFavorites.filter(character => character.id !== action.payload), 
-            allCharacters: state.allCharacters.filter(character => character.id !== action.payload)           
-        }
+        // return {
+        //     ...state,
+        //     myFavorites: state.myFavorites.filter(character => character.id !== action.payload), 
+        //     allCharacters: state.allCharacters.filter(character => character.id !== action.payload)           
+        // }
+        return { 
+            ...state, 
+            myFavorites: action.payload,
+            allCharacters: action.payload
+        };
     case FILTER:
         console.log('filtro genero');
         console.log(state.myFavorites);
