@@ -1,36 +1,34 @@
-const express = require('express');
 const axios = require('axios');
 const URL = "https://rickandmortyapi.com/api/character/"
-const routerCharacters = express.Router()
 
-const getCharById = routerCharacters.get('/:id',(req, res)=>{
-    //mi req aca es lo que me llega del index al llamar a la funcion
-    console.log('entra a get?')
+const getCharById = async(req, res)=>{
+    try {
     const {id} = req.params;
     console.log('id: ' + id);
-    axios.get(`${URL}${id}`)
-    .then(result => result.data)
-//puedo hacer destructuring de los valores de data
-.then((data) => {
-    const { id, status, name, species, origin, image, gender } = data;
-    //tengo que guardar un objeto con el personaje
-    const character = {
-        id: id,
-        name: name,
-        gender: gender,
-        species: species,
-        origin: origin.name,
-        image: image,
-        status: status
-      };
-      console.log('pj')
-      res.header('Access-Control-Allow-Origin', '*');
-      res.json(character);
-      })
-    .catch(error => {
-      res.status(500).json({ message: error.message });
-    });
-  })
+    const result = await axios(`${URL}${id}`);
+    //el objeto result tiene la propiedad data que contiene todo lo que me interesa
+    // en lugar de hacer 2 then con promesas, recibo el result y hago destructuring
+    const { status, name, species, origin, image, gender } = result.data;
+        //si al entrar en la url encuentra un personaje, lo devuelvo
+        if(name){
+        const character = {
+            id: id,
+            name: name,
+            gender: gender,
+            species: species,
+            origin: origin.name,
+            image: image,
+            status: status
+          };
+          console.log('pj')
+          return res.status(200).json(character)
+        }
+        // si no tiene name es porque no hay error en la ruta pero no hay nada que devolver, entonces pongo que no se encontro
+        return res.status(404).send('Not found');
+      } catch(error){
+          res.status(500).json({ message: error.message });
+        };
+      }
   //routerCharacters.get('/', getCharById);
 
   module.exports = getCharById;

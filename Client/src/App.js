@@ -20,30 +20,31 @@ function App() {
    //hago otro estado para guardar los ids de los personajes
    const [characterIds, setCharacterIds] = useState([]);
 
-   let onSearch = (id) =>{
-      let casillaInput = document.querySelector('input');
-      console.log(casillaInput.value);
-      // recorre el array que tiene los ids. Cada valor recorrido seria un 'character ID'. Devuelve el primer valor que coincida con el id que tengo de parametro
-      const foundCharacter = characterIds.find((characterId) => characterId === id);
-      if (foundCharacter) {
-        window.alert('¡Este personaje ya ha sido agregado!');
-        return;
-      }
-      //va a agregar un nuevo personaje a 'characters'
-      // viejo:
-      // axios(`${URL_BASE}/${id}?key=${API_KEY}`).then(({ data }) => {
-      // const urlPeticion= `http://localhost:3001/rickandmorty/character/${id}`;
-      // console.log('urlPeticion:' + urlPeticion);
-      axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
-      if (data.name) {
-         // en la funcion del estado guarda un array llamando cada vez a la instancia anterior, hace una copia, y agrega el ultimo valor.
-         setCharacters((oldChars) => [...oldChars, data]);
-         setCharacterIds((oldIds) => [...oldIds, id]);
-         casillaInput.value = '';
-      } else {
+   async function onSearch(id){
+      try {
+         let casillaInput = document.querySelector('input');
+         console.log(casillaInput.value);
+         // recorre el array que tiene los ids. Cada valor recorrido seria un 'character ID'. Devuelve el primer valor que coincida con el id que tengo de parametro
+         const foundCharacter = characterIds.find((characterId) => characterId === id);
+         if (foundCharacter) {
+           window.alert('¡Este personaje ya ha sido agregado!');
+           return;
+         }
+         const response = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+         const data = response.data;
+         if (data.name) {
+            // en la funcion del estado guarda un array llamando cada vez a la instancia anterior, hace una copia, y agrega el ultimo valor.
+            setCharacters((oldChars) => [...oldChars, data]);
+            setCharacterIds((oldIds) => [...oldIds, id]);
+            casillaInput.value = '';
+         } else {
+            window.alert('¡No hay personajes con este ID!');
+         }   
+
+      }catch(error){
          window.alert('¡No hay personajes con este ID!');
+         console.log(error)
       }
-   });
    }
    const onClose = (id) => {
       let confirmed = window.confirm('Seguro deseas borrar este personaje?')
