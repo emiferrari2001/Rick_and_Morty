@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export const addFav = (character) => {
     const endpoint = 'http://localhost:3001/rickandmorty/fav';
+    //esta funcion es la asincronica porque es la que hace peticion a axios
     return async (dispatch) => {
             try{
            const {data} = await axios.post(endpoint, character)
@@ -21,8 +22,9 @@ export const addFav = (character) => {
     return async (dispatch) => {
         try{
             const {data} = await axios.delete(endpoint)  
-            //console.log(data)          
-               dispatch({
+            //console.log(data)  
+            if(!data.length) throw Error('No hay favoritos')        
+               return dispatch({
                   type: REMOVE_FAV,
                   payload: data,
             });

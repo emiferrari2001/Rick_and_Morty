@@ -72,16 +72,19 @@ function App() {
          
    //    }
    // }
-
-   function login(userData) {
-      const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
-         setAccess(data);
-         if(access=== false)alert('Las credenciales proporcionadas no existen');
-         access && navigate('/home');
-      });
+   
+   const URL = 'http://localhost:3001/rickandmorty/login';
+   async function login(userData) {
+      try{
+         const { email, password } = userData;
+         const {data} = await axios(URL + `?email=${email}&password=${password}`)
+            const { access } = data;
+            setAccess(data);
+            if(access=== false)alert('Las credenciales proporcionadas no existen');
+            access && navigate('/home');
+      } catch(error){
+         console.log(error.message)
+      }
    }
 
    let logout = () => {  
