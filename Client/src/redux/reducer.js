@@ -65,6 +65,8 @@ switch(action.type){
                 allCharacters: todosLosPjs.slice() // actualizar también allCharacters
             }
     case RESET:
+        console.log('reset')
+        console.log(state.allCharacters);
         return {
             ...state,
             myFavorites: state.allCharacters,

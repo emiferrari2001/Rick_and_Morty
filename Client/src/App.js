@@ -80,6 +80,7 @@ function App() {
          const {data} = await axios(URL + `?email=${email}&password=${password}`)
             const { access } = data;
             setAccess(data);
+            //console.log(access);
             if(access=== false)alert('Las credenciales proporcionadas no existen');
             access && navigate('/home');
       } catch(error){

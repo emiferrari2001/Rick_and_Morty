@@ -1,20 +1,28 @@
-const users = require('../utils/users');
-console.log('llega a login');
-const login = (req, res)=>{
-    const {email,password} = req.query;
-    const filtradoUser = []
-    users.filter((user)=>{
-        if(user.email === email && user.password === password){
-            filtradoUser.push(user)
-        }  
+const {User} = require('../DB_connection');
+
+const login = async (req, res) =>{
+const {email, password} = req.query;
+try {
+    if(!email || !password) return res.status(400).send({msg: 'Faltan datos'});
+    
+    //si llegan ambos valores busco en mi tabla usuarios a ver cual coincide
+    const findUser = await User.findOne({
+        where:{
+            email,
+        }
     });
-    console.log(filtradoUser.length)
-    if(filtradoUser.length === 1){
-        return res.status(200).json({'access': true});
-    } else{
-        //res.header('Access-Control-Allow-Origin', '*');
-        return res.status(200).json({'access': false})
-    }
+    if(!findUser) return res.status(200).send({access: false});
+
+    // Verifico si la contraseña almacenada es la misma que la recibida
+    if (findUser.password !== password) {
+        return res.status(200).send({access: false});
+      }
+      
+      return res.status(200).send({access: true});
+    
+} catch (error) {
+    return res.status(500).send({error: error.message});
+}
 }
 
 module.exports = login;

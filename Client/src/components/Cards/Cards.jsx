@@ -9,6 +9,7 @@ export default function Cards(props) {
             return(
                
                <Card 
+               userId={1}
                key={personaje.id}
                id={personaje.id}
                name={personaje.name}

@@ -8,7 +8,10 @@ const Card = (props) => {
   const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
   const myFavorites = useSelector(state => state.myFavorites)
-
+  
+  console.log('myFavorites');
+  console.log(myFavorites);
+  
   const ifAlive = () => {
     return props.status === 'Alive' ? styles.green : styles.red;
   };
@@ -26,7 +29,9 @@ const Card = (props) => {
 
   useEffect(() => {
    myFavorites.forEach((fav) => {
-      if (fav.id === props.id) {
+     console.log('arranca componente card');
+      if (fav.id === Number(props.id)) {
+        
          setIsFav(true);
       }
    });
@@ -34,13 +39,7 @@ const Card = (props) => {
 
   return (
     <div className= {styles.cardPersonaje}>
-      <div>
-        {isFav ? (
-          <button onClick={handleFavorite}>❤️</button>
-        ) : (
-          <button onClick={handleFavorite}>🤍</button>
-        )}
-      </div>
+      
       {/* habria que hacer renderizado condicional si hay onclose para favorites */}
       <button onClick={() => props.onClose(props.id)} className={`${styles.botonCard} otroClassName`}>
         x
@@ -53,6 +52,13 @@ const Card = (props) => {
       <p>Species: {props.species}</p>
       <p>Gender: {props.gender}</p>
       <p>Origin: {props.origin}</p>
+      <div>
+        {isFav ? (
+          <button onClick={handleFavorite} className= {styles.corazon}>❤️</button>
+        ) : (
+          <button onClick={handleFavorite} className= {styles.corazon}>🤍</button>
+        )}
+      </div>
     </div>
   );
 };
