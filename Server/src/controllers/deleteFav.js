@@ -8,6 +8,7 @@ try {
         where: {id}
     });
     const allFavs = await Favorite.findAll();
+    console.log(allFavs);
     return res.status(200).json(allFavs);
 
 } catch (error) {

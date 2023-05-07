@@ -23,8 +23,9 @@ export const addFav = (character) => {
     return async (dispatch) => {
         try{
             const {data} = await axios.delete(endpoint)  
-            //console.log(data)  
-            if(!data.length) throw Error('No hay favoritos')        
+            console.log("BORRO")
+            console.log(data)  
+            //if(!data.length) throw Error('No hay favoritos')        
                return dispatch({
                   type: REMOVE_FAV,
                   payload: data,

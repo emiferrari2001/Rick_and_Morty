@@ -31,7 +31,7 @@ const Card = (props) => {
    myFavorites.forEach((fav) => {
      console.log('arranca componente card');
       if (fav.id === Number(props.id)) {
-        
+        console.log(fav.id === Number(props.id))
          setIsFav(true);
       }
    });

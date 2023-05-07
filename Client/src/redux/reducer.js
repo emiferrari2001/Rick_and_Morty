@@ -26,6 +26,8 @@ switch(action.type){
         //     myFavorites: state.myFavorites.filter(character => character.id !== action.payload), 
         //     allCharacters: state.allCharacters.filter(character => character.id !== action.payload)           
         // }
+        console.log('payload remove fav')
+        console.log(action.payload)
         return { 
             ...state, 
             myFavorites: action.payload,

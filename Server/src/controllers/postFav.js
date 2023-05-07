@@ -17,6 +17,7 @@ try {
     const allFavs = await Favorite.findAll();
     if(userId){
         const user = await User.findByPk(userId)
+        console.log('add fav')
         console.log(newFav[0].dataValues);
         if(user){
             await user.addFavorite(newFav[0].dataValues.id);
